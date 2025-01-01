@@ -54,7 +54,7 @@ struct ContextMenuBootcamp: View {
                 // Action for Edit
                 backgroundColor = .orange
             }) {
-                Label("Find Friends", systemImage: "paperplane")
+                Label("Find New Friends", systemImage: "paperplane")
             }
             
             Button(role: .destructive, action: {
