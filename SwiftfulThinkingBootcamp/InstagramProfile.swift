@@ -118,7 +118,7 @@ struct InstagramProfile: View {
                             
                             Button(action: {
                                 // Action for Edit
-                                backgroundColor = .orange
+                                backgroundColor = .white
                             }) {
                                 Label("See User", systemImage: "person")
                             }
