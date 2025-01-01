@@ -33,7 +33,7 @@ struct ContextMenuBootcamp: View {
                 // Action for Share
                 print("Share tapped")
             }) {
-                Label("Share", systemImage: "paperplane")
+                Label("Share", systemImage: "flame.fill")
             }
             
             Button(action: {
