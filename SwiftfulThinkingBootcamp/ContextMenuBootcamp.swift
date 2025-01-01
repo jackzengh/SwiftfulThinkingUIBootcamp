@@ -47,7 +47,7 @@ struct ContextMenuBootcamp: View {
                 // Action for Edit
                 backgroundColor = .orange
             }) {
-                Label("See User", systemImage: "person.crop.circle.fill")
+                Label("See User", systemImage: "person")
             }
             
             Button(role: .destructive, action: {
