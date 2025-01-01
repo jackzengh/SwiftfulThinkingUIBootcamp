@@ -45,13 +45,13 @@ struct ActionSheetBootcamp: View {
     
     func getActionSheet() -> ActionSheet {
         let shareButton: ActionSheet.Button = .default(Text("Share")) {
-            print("Share tapped")
+            print("Share")
         }
         let copyButton: ActionSheet.Button = .default(Text("Copy")) {
-            print("Copy tapped")
+            print("Copy")
         }
         let deleteButton: ActionSheet.Button = .destructive(Text("Delete")) {
-            print("Delete tapped")
+            print("Delete")
         }
         let cancelButton: ActionSheet.Button = .cancel()
         
