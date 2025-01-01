@@ -8,6 +8,7 @@ struct InstagramProfile: View {
         GridItem(.flexible(), spacing: 6),
         GridItem(.flexible(), spacing: 6)
     ]
+    @State var backgroundColor: Color = .gray
     
     var body: some View {
         NavigationView {
@@ -90,7 +91,7 @@ struct InstagramProfile: View {
                     LazyVGrid(columns: columns, spacing: 6) {
                         ForEach(0..<30) { index in
                             RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.gray.opacity(0.2))
+                                .fill(Color(backgroundColor).opacity(0.2))
                                 .aspectRatio(1, contentMode: .fit)
                                 .overlay(
                                     Image(systemName: index % 2 == 0 ? "heart.fill" : "star.fill")
@@ -99,6 +100,42 @@ struct InstagramProfile: View {
                                         .padding(20)
                                         .foregroundColor(index % 2 == 0 ? .red : .yellow)
                                 )
+                        }
+                        .contextMenu {
+                            Button(action: {
+                                // Action for Share
+                                print("Share tapped")
+                            }) {
+                                Label("Share", systemImage: "flame.fill")
+                            }
+                            
+                            Button(action: {
+                                // Action for Edit
+                                backgroundColor = .yellow
+                            }) {
+                                Label("Edit", systemImage: "pencil")
+                            }
+                            
+                            Button(action: {
+                                // Action for Edit
+                                backgroundColor = .orange
+                            }) {
+                                Label("See User", systemImage: "person")
+                            }
+                            
+                            Button(action: {
+                                // Action for Edit
+                                backgroundColor = .orange
+                            }) {
+                                Label("Find New Friends", systemImage: "paperplane")
+                            }
+                            
+                            Button(role: .destructive, action: {
+                                // Action for Delete
+                                backgroundColor = .red
+                            }) {
+                                Label("Delete", systemImage: "trash")
+                            }
                         }
                     }
                     .padding(.horizontal)
