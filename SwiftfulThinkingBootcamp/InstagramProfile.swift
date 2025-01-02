@@ -1,7 +1,32 @@
 import SwiftUI
 
-struct InstagramProfile: View {
-    
+// MARK: - Main App View
+struct InstagramApp: View {
+    var body: some View {
+        TabView {
+            ProfileView()
+                .tabItem {
+                    Image(systemName: "person.crop.circle")
+                    Text("Profile")
+                }
+            
+            HomeView()
+                .tabItem {
+                    Image(systemName: "house.fill")
+                    Text("Home")
+                }
+            
+            SearchView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
+                }
+        }
+    }
+}
+
+// MARK: - Profile View
+struct ProfileView: View {
     // Grid layout for posts
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 6),
@@ -53,7 +78,7 @@ struct InstagramProfile: View {
                         .padding(.bottom, 20)
                         
                         // Profile Name and Bio
-                        VStack (alignment: .leading, spacing: 15) {
+                        VStack(alignment: .leading, spacing: 15) {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Jack Zheng")
                                     .font(.headline)
@@ -61,15 +86,6 @@ struct InstagramProfile: View {
                                     .font(.caption)
                                     .foregroundColor(.gray)
                             }
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Lachie Harris")
-                                    .font(.headline)
-                                Text("🚀 SHEEEESSHH | 🍎 LESS GO LAD")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                            }
-                            .padding(.bottom, 20)
                         }
                         
                         // Edit Profile Button
@@ -100,54 +116,61 @@ struct InstagramProfile: View {
                                         .padding(20)
                                         .foregroundColor(index % 2 == 0 ? .red : .yellow)
                                 )
-                        }
-                        .contextMenu {
-                            Button(action: {
-                                // Action for Share
-                                print("Share tapped")
-                            }) {
-                                Label("Share", systemImage: "flame.fill")
-                            }
-                            
-                            Button(action: {
-                                // Action for Edit
-                                backgroundColor = .yellow
-                            }) {
-                                Label("Edit", systemImage: "pencil")
-                            }
-                            
-                            Button(action: {
-                                // Action for Edit
-                                backgroundColor = .white
-                            }) {
-                                Label("See User", systemImage: "person")
-                            }
-                            
-                            Button(action: {
-                                // Action for Edit
-                                backgroundColor = .orange
-                            }) {
-                                Label("Find New Friends", systemImage: "paperplane")
-                            }
-                            
-                            Button(role: .destructive, action: {
-                                // Action for Delete
-                                backgroundColor = .red
-                            }) {
-                                Label("Delete", systemImage: "trash")
-                            }
+                                .contextMenu {
+                                    Button(action: { print("Share tapped") }) {
+                                        Label("Share", systemImage: "flame.fill")
+                                    }
+                                    
+                                    Button(action: { backgroundColor = .yellow }) {
+                                        Label("Edit", systemImage: "pencil")
+                                    }
+                                    
+                                    Button(action: { backgroundColor = .white }) {
+                                        Label("See User", systemImage: "person")
+                                    }
+                                    
+                                    Button(action: { backgroundColor = .orange }) {
+                                        Label("Find New Friends", systemImage: "paperplane")
+                                    }
+                                    
+                                    Button(role: .destructive, action: { backgroundColor = .red }) {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
                         }
                     }
                     .padding(.horizontal)
                 }
             }
-            .navigationTitle("Instagram")
+            .navigationTitle("Profile")
         }
     }
 }
 
+// MARK: - Home View
+struct HomeView: View {
+    var body: some View {
+        NavigationView {
+            Text("Home Screen")
+                .font(.title)
+                .navigationTitle("Home")
+        }
+    }
+}
+
+// MARK: - Search View
+struct SearchView: View {
+    var body: some View {
+        NavigationView {
+            Text("Search Screen")
+                .font(.title)
+                .navigationTitle("Search")
+        }
+    }
+}
+
+// MARK: - Edit Profile View
 struct EditProfileView: View {
-    // Profile Data
     @State private var name: String = "Jack Zheng"
     @State private var bio: String = "🚀 Aspiring developer | 🍎 Swift enthusiast"
     @State private var image: Image? = Image(systemName: "person.crop.circle.fill")
@@ -179,7 +202,6 @@ struct EditProfileView: View {
             
             // Save Changes Button
             Button("Save Changes") {
-                // Handle saving the changes
                 print("Changes saved!")
             }
             .font(.headline)
@@ -194,5 +216,5 @@ struct EditProfileView: View {
 }
 
 #Preview {
-    InstagramProfile()
+    InstagramApp()
 }
