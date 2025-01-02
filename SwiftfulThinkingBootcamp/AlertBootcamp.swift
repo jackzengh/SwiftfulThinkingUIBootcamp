@@ -78,7 +78,7 @@ struct AlertBootcamp: View {
                 title: Text(title),
                 message: Text(description),
                 primaryButton: .destructive(Text("Rizz"), action: {
-                    withAnimation(.easeInOut(duration: 0.5)) {
+                    withAnimation(.spring(duration: 0.1)) {
                         backgroundColor = Color.red
                         showMessage.toggle() // Animate the "Oh yea we made it" message
                     }
