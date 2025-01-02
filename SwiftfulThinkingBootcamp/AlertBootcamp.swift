@@ -8,6 +8,7 @@ struct AlertBootcamp: View {
     @State var title: String = ""
     @State var description: String = ""
     @State var showModal: Bool = false // State to control modal visibility
+    @State var showMessage: Bool = false // State to control "Oh yea we made it" visibility
     
     var body: some View {
         ZStack {
@@ -23,12 +24,20 @@ struct AlertBootcamp: View {
                         showAlert.toggle()
                     },
                     label: {
-                        Text("ABG HEAVEN")
-                            .font(.headline)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
+                        VStack {
+                            Text("ABG HEAVEN")
+                                .font(.headline)
+                            if showMessage {
+                                Text("Oh yea we made it")
+                                    .font(.caption)
+                                    .transition(.slide) // Animation effect
+                            }
+                        }
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                        
                     }
                 )
                 Button(
@@ -69,7 +78,10 @@ struct AlertBootcamp: View {
                 title: Text(title),
                 message: Text(description),
                 primaryButton: .destructive(Text("Rizz"), action: {
-                    backgroundColor = Color.red
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        backgroundColor = Color.red
+                        showMessage.toggle() // Animate the "Oh yea we made it" message
+                    }
                 }),
                 secondaryButton: .cancel()
             )
